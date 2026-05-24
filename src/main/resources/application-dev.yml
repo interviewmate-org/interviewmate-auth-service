@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: authservice
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    user:
+      name: user
+      password: 123
+server:
+  port: 8081

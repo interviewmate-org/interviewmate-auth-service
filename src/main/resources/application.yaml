@@ -1,7 +1,11 @@
 spring:
   application:
     name: authservice
+
+  profiles:
+    active: dev
+
 server:
   port: 8081
 
-  # Setup the Config Server URL
+# Setup the Config Server URL
