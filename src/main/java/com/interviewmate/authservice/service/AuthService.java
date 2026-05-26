@@ -1,29 +1,36 @@
 package com.interviewmate.authservice.service;
 
 import com.interviewmate.authservice.dto.UserDTO;
+import com.interviewmate.authservice.payload.request.ForgetPasswordRequest;
 import com.interviewmate.authservice.payload.request.LoginRequest;
+import com.interviewmate.authservice.payload.request.RefreshTokenRequest;
 import com.interviewmate.authservice.payload.response.ApiResponse;
+import com.interviewmate.authservice.payload.response.RefreshTokenResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import java.util.List;
+public interface AuthService {
+    UserDTO registerAdmin(UserDTO userDTO);
 
-public interface AdminService {
-    ApiResponse<List<UserDTO>> getAllNormalUsers(LoginRequest loginRequest);
+    ApiResponse<RefreshTokenResponse> loginAdmin(LoginRequest loginRequest);
 
-    ApiResponse<UserDTO> lockUserById(String id);
+    ApiResponse<RefreshTokenResponse> refreshToken(RefreshTokenRequest body, HttpServletRequest request, HttpServletResponse response);
 
-    ApiResponse<UserDTO> unlockUserById(String id);
+    void logout(HttpServletRequest request, HttpServletResponse response);
 
-    ApiResponse<UserDTO> revokeUserRefreshTokenById(String id);
+    ApiResponse<String> forgetPassword(ForgetPasswordRequest email);
 
-    ApiResponse<UserDTO> disableMFAAdminById(String id);
+    ApiResponse<String> resetPassword(String email);
 
-    ApiResponse<UserDTO> disableMFAUserById(String id);
+    ApiResponse<String> changePassword(LoginRequest loginRequest, String newPassword);
 
-    ApiResponse<List<UserDTO>> getAllLockedUsers();
+    ApiResponse<String> enableMFA();
 
-    ApiResponse<List<UserDTO>> getAllActiveUsers();
+    ApiResponse<String> disableMFA();
 
-    ApiResponse<UserDTO> changeRoleById(String id);
+    ApiResponse<?> getPermissionsForUser(LoginRequest loginRequest);
 
-    ApiResponse<UserDTO> disableUserById(String id);
+    ApiResponse<String> revokeToken(RefreshTokenRequest refreshTokenRequest);
+
+    ApiResponse<?> securityEvents();
 }
