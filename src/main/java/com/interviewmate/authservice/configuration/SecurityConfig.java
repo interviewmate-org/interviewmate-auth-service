@@ -67,5 +67,4 @@ public class SecurityConfig {
             writer.flush();
         });
     }
-
 }

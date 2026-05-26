@@ -19,7 +19,7 @@ target/
 *.iml
 *.ipr
 .env-local
-HomeController.java
+src/main/java/com/interviewmate/authservice/controller/HomeController.java
 
 ### NetBeans ###
 /nbproject/private/
