@@ -1,6 +1,6 @@
 package com.interviewmate.authservice.service;
 
-import com.interviewmate.authservice.payload.Response.ApiResponse;
+import com.interviewmate.authservice.payload.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface OtpService {

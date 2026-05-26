@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.payload.Request;
+package com.interviewmate.authservice.payload.request;
 
 
 public record LoginRequest(

@@ -1,11 +1,11 @@
 package com.interviewmate.authservice.service.Impl;
 
 import com.interviewmate.authservice.dto.UserDTO;
-import com.interviewmate.authservice.payload.Request.ForgetPasswordRequest;
-import com.interviewmate.authservice.payload.Request.RefreshTokenRequest;
-import com.interviewmate.authservice.payload.Response.ApiResponse;
-import com.interviewmate.authservice.payload.Request.LoginRequest;
-import com.interviewmate.authservice.payload.Response.RefreshTokenResponse;
+import com.interviewmate.authservice.payload.request.ForgetPasswordRequest;
+import com.interviewmate.authservice.payload.request.RefreshTokenRequest;
+import com.interviewmate.authservice.payload.response.ApiResponse;
+import com.interviewmate.authservice.payload.request.LoginRequest;
+import com.interviewmate.authservice.payload.response.RefreshTokenResponse;
 import com.interviewmate.authservice.repository.RefreshTokenRepository;
 import com.interviewmate.authservice.repository.UserRepository;
 import com.interviewmate.authservice.service.AuthService;

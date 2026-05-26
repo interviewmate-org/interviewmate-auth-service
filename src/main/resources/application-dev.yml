@@ -1,18 +1,45 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
 spring:
-  application:
-    name: authservice
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/interviewmate}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    url: jdbc:mysql://localhost:3306/interview_mate_dev_auth_db
+    username: root
+    password: tiger
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      timeout: 60000
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          min-idle: 2
+
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
-  security:
-    user:
-      name: user
-      password: 123
-server:
-  port: 8081
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  Kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+jwt:
+  secret:
+    key: lksjdfioweru20394723jaksdo;fjak-@()#*@()#!@(*_KCJDJCMKADSLlaskdjf02935729034123948!)(#$&@*()&$@#Q$(%*)%&#VNFOJKEAMJXCOFASDJMLAENHJFCD
+  duration:
+    exipriy: 12

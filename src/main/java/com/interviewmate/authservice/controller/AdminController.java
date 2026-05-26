@@ -1,8 +1,8 @@
 package com.interviewmate.authservice.controller;
 
 import com.interviewmate.authservice.dto.UserDTO;
-import com.interviewmate.authservice.payload.Request.LoginRequest;
-import com.interviewmate.authservice.payload.Response.ApiResponse;
+import com.interviewmate.authservice.payload.request.LoginRequest;
+import com.interviewmate.authservice.payload.response.ApiResponse;
 import com.interviewmate.authservice.service.AdminService;
 import com.interviewmate.authservice.service.OtpService;
 import lombok.AllArgsConstructor;

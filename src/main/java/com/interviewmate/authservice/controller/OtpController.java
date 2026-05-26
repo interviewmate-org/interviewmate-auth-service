@@ -1,6 +1,6 @@
 package com.interviewmate.authservice.controller;
 
-import com.interviewmate.authservice.payload.Response.ApiResponse;
+import com.interviewmate.authservice.payload.response.ApiResponse;
 import com.interviewmate.authservice.service.OtpService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;

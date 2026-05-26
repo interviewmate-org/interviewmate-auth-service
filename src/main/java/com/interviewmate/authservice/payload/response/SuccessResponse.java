@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.payload.Response;
+package com.interviewmate.authservice.payload.response;
 
 import java.time.LocalDateTime;
 
