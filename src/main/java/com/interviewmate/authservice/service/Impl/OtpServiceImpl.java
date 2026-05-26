@@ -18,7 +18,6 @@ public class OtpServiceImpl implements OtpService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final OtpService otpService;
 
 
     @Override
