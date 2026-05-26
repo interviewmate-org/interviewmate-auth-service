@@ -22,7 +22,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
 
     /**
-     * func UserDetails loadUserByUsername(@param String username)
+     * function UserDetails loadUserByUsername(@param String username)
      * function @param username but change the name into our project requirement in @param email
      * This method is invoked by security when a user tries to authenticate. It loads the user's details
      * (email, password, role) from database.
