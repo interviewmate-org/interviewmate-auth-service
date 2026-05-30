@@ -2,6 +2,9 @@ package com.interviewmate.authservice.configuration;
 
 import com.interviewmate.authservice.constance.AppConstants;
 import com.interviewmate.authservice.filter.JwtFilter;
+import com.interviewmate.authservice.security.OAuth2SuccessHandler;
+import com.interviewmate.authservice.security.Oauth2FailureHandler;
+import com.interviewmate.authservice.service.Impl.CustomOAuth2UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +30,9 @@ import java.io.PrintWriter;
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final Oauth2FailureHandler oauth2FailureHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -37,8 +43,35 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequest ->
                         authorizeHttpRequest.requestMatchers(AppConstants.AUTH_PUBLIC_URL).permitAll()
-                                .anyRequest().authenticated())
+                                .anyRequest().authenticated()
+                )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedEntryPoint()))
+
+                // OAuth2 login
+                .oauth2Login(oauth2 -> oauth2
+                        // redirect spring security unauthenticated users
+                        .loginPage("/api/v2/auth/login")
+
+                        // endpoint frontend hits to start the Oauth2 flow:
+                        // GET /oauth2/authroized/google
+                        // GET /oauth2/authrized/github
+                        .authorizationEndpoint(endPoint -> endPoint.baseUri("/oauth2/authorize"))
+
+                        // the callback URL registered in Google/GitHub console:
+                        // /login/oauth2/code/google
+                        // /login/oauth2/code/github
+                        .redirectionEndpoint(endPoint -> endPoint.baseUri("/login/oauth2/code/*"))
+
+                        // custom service that creates/updates the local User record
+                        .userInfoEndpoint(endPoint -> endPoint.userService(customOAuth2UserService))
+
+                        // redirect frontend with jwt token on success
+                        .successHandler(oAuth2SuccessHandler)
+
+                        // redirect frontend with error message on failure
+                        .failureHandler(oauth2FailureHandler)
+
+                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(AbstractHttpConfigurer::disable);
         return httpSecurity.build();

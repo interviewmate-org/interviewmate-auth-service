@@ -29,6 +29,8 @@ public class User {
     @NotBlank(message = "Email is required")
     @Column(unique = true, nullable = false)
     private String email;
+    
+    private String name;
 
     /*@NotBlank(message = "Password is required")
     @Size(min = 6, message = "Password must be at least 6 characters long")*/
@@ -52,6 +54,7 @@ public class User {
         if (createdAt == null) createdAt = now;
         updatedAt = now;
     }
+
     @PreUpdate
     protected void onUpdate() {
         updatedAt = Instant.now();
