@@ -62,3 +62,4 @@ replay_pid*
 .env
 
 src/main/resources/application-dev.yml
+sonar-project.properties
