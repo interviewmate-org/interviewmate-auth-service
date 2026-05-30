@@ -31,13 +31,6 @@
         <spring-cloud.version>2025.1.1</spring-cloud.version>
 
         <!-- SonarQube Configuration -->
-        <sonar.projectKey>interview-mate-auth-service</sonar.projectKey>
-        <sonar.projectName>interview-mate-auth-service</sonar.projectName>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.token>${env.SONAR_TOKEN}</sonar.token>
-        <sonar.sources>src/main/java</sonar.sources>
-        <sonar.tests>src/test/java</sonar.tests>
-        <sonar.java.binaries>target/classes</sonar.java.binaries>
         <sonar.coverage.jacoco.xmlReportPaths>
             target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
