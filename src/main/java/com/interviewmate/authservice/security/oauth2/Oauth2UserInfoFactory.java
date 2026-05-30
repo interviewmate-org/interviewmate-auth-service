@@ -7,6 +7,11 @@ import java.util.Map;
 
 public class Oauth2UserInfoFactory {
 
+    private Oauth2UserInfoFactory() {
+       
+    }
+
+
     public static OAuth2UserInfo getOauth2UserInfo(String registrationId, Map<String, Object> attributes) {
         return switch (registrationId.toLowerCase()) {
             case "google" -> new GoogleOAuth2UserInfo(attributes);

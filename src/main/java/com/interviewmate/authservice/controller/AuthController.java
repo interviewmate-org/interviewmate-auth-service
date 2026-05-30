@@ -88,19 +88,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(authService.disableMFA());
     }
 
-    /*@GetMapping("/permissions")
-    public ResponseEntity<ApiResponse<?>> getPermessions(@RequestBody LoginRequest loginRequest){
-        *//*Didn't add anything add which is feasible Return authenticated user roles and permissions*//*
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(authService.getPermissionsForUser(loginRequest));
-    }
-
-    @GetMapping("/security-events")
-    public ResponseEntity<ApiResponse<?>> securityEvents(){
-        *//*Didn't add anything add which is feasible Return recent security-related activities for account*//*
-        return ResponseEntity.status(HttpStatus.OK).body(authService.securityEvents());
-    }*/
-
     @PostMapping("/revoke-token")
     public ResponseEntity<ApiResponse<String>> revokeToken(
             @RequestBody RefreshTokenRequest refreshTokenRequest

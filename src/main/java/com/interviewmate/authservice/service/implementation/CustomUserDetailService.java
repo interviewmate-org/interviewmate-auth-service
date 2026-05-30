@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.service.Impl;
+package com.interviewmate.authservice.service.implementation;
 
 import com.interviewmate.authservice.entity.User;
 import com.interviewmate.authservice.repository.UserRepository;
