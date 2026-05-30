@@ -4,7 +4,7 @@ import com.interviewmate.authservice.constance.AppConstants;
 import com.interviewmate.authservice.filter.JwtFilter;
 import com.interviewmate.authservice.security.OAuth2SuccessHandler;
 import com.interviewmate.authservice.security.Oauth2FailureHandler;
-import com.interviewmate.authservice.service.Impl.CustomOAuth2UserService;
+import com.interviewmate.authservice.service.implementation.CustomOAuth2UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,14 +35,14 @@ public class SecurityConfig {
     private final Oauth2FailureHandler oauth2FailureHandler;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .sessionManagement(sm -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequest ->
-                        authorizeHttpRequest.requestMatchers(AppConstants.AUTH_PUBLIC_URL).permitAll()
+                        authorizeHttpRequest.requestMatchers(AppConstants.AUTH_PUBLIC_URL.toArray(new String[0])).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedEntryPoint()))

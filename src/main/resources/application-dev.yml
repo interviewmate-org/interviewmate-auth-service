@@ -84,7 +84,7 @@ jwt:
   secret:
     key: ${JWT_SECRET_KEY}
   duration:
-    exipriy: ${JWT_EXIPRIY}
+    exipriy: ${JWT_EXIPRIY:12}
 
 # configs for dev profiles not for prod
 logging:

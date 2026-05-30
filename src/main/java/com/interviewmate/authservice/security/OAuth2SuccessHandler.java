@@ -27,7 +27,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
-    //TODO: change value in production
     @Value("${app.oauth2.authorized-redirect-uris[0]}")
     private String defaultFrontendRedirectUri;
 
