@@ -26,7 +26,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -92,3 +92,11 @@ logging:
     org.springframework.security.oauth2: DEBUG
     org.interviewmate.authservice.security: DEBUG
     com.interviewmate.authservice.service: DEBUG
+
+audit:
+  kafka:
+    topic:
+      security-audit-logs: ${SECURITY_AUDIT_LOGS_TOPIC:security-audit-events}
+      performance-metrics: ${PERFORMANCE_METRICS_TOPIC:performance-metrics}
+      application-errors: ${APPLICATION_ERRORS_TOPIC:application-errors}
+      application-logs: ${APPLICATION_LOGS_TOPIC:application-logs}
