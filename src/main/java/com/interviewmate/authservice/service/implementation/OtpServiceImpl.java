@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.service.Impl;
+package com.interviewmate.authservice.service.implementation;
 
 import com.interviewmate.authservice.payload.response.ApiResponse;
 import com.interviewmate.authservice.repository.RefreshTokenRepository;

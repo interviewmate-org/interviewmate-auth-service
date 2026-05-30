@@ -1,6 +1,5 @@
 package com.interviewmate.authservice.security;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
@@ -19,7 +18,6 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class Oauth2FailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    // TODO: change value in production
     @Value("${app.oauth2.authorized-redirect-uris[0]}")
     private String frontendUri;
 

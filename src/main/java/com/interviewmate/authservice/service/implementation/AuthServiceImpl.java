@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.service.Impl;
+package com.interviewmate.authservice.service.implementation;
 
 import com.interviewmate.authservice.dto.UserDTO;
 import com.interviewmate.authservice.payload.request.ForgetPasswordRequest;
@@ -43,7 +43,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response) {}
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+    }
 
     @Override
     public ApiResponse<String> forgetPassword(ForgetPasswordRequest email) {
