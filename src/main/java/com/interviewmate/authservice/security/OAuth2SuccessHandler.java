@@ -31,7 +31,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private String defaultFrontendRedirectUri;
 
     @Override
-    public void onAuthenticationSuccess(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+    public void onAuthenticationSuccess(@NonNull HttpServletRequest request,
+                                        @NonNull HttpServletResponse response,
                                         @NonNull Authentication authentication) throws IOException {
 
         if (response.isCommitted()) {
@@ -41,28 +42,30 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
 
-        // email was normalised into attributes by CustomOAuth2UserService
+        // email was normalized into attributes by CustomOAuth2UserService
         assert oAuth2User != null;
         String email = (String) oAuth2User.getAttributes().get("email");
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalStateException("OAuth2 user not found in DB after successful login: " + email));
 
-        // reuse your existing JwtUitl create a minimal UserDetails adapter
+        // reuse your existing JwtUtil create a minimal UserDetails adapter
         UserDetails userDetails = org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
                 .password("") // OAuth2 users have no password
                 .authorities(user.getRole().name())
                 .build();
 
-        String jwt = jwtUtil.generatedToken(userDetails, user.getRole());
+        String jwt = jwtUtil.generatedAccessToken(userDetails, user.getRole());
+        String refreshToken = jwtUtil.generatedRefreshToken(userDetails, user.getRole());
 
         log.info("OAuth2 login successful for [{}] via [{}]", email, user.getProvider());
 
-        // redirect the user's browser to the frontend callback with the jwt
+        // redirect the user's browser to the frontend callback with the jwt, refreshToken
         String targetUrl = UriComponentsBuilder
                 .fromUriString(defaultFrontendRedirectUri)
-                .queryParam("token", jwt)
+                .queryParam("access_token", jwt)
+                .queryParam("refresh_token", refreshToken)
                 .build().toUriString();
 
         getRedirectStrategy().sendRedirect(request, response, targetUrl);

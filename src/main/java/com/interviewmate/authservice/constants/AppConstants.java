@@ -1,4 +1,4 @@
-package com.interviewmate.authservice.constance;
+package com.interviewmate.authservice.constants;
 
 import java.util.List;
 import java.util.UUID;

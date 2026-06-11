@@ -1,6 +1,6 @@
 package com.interviewmate.authservice.service.implementation;
 
-import com.interviewmate.authservice.constance.AppConstants;
+import com.interviewmate.authservice.constants.AppConstants;
 import com.interviewmate.authservice.dto.UserDTO;
 import com.interviewmate.authservice.payload.request.LoginRequest;
 import com.interviewmate.authservice.payload.response.ApiResponse;

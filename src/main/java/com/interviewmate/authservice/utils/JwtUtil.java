@@ -22,7 +22,7 @@ public class JwtUtil {
 
     private final SecretKey secretKey;
 
-    @Value("${jwt.duration.exipriy}")
+    @Value("${jwt.duration.expiry}")
     private long expirationTokenTime;
 
     public JwtUtil(@Value("${jwt.secret.key}") String secretKeyStr) {
@@ -30,10 +30,23 @@ public class JwtUtil {
         this.secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // generated token
-    public String generatedToken(UserDetails userDetails, Role role) {
+    // generated Access token
+    public String generatedAccessToken(UserDetails userDetails, Role role) {
         Map<String, Object> claims = new HashMap<>();
 
+        //added what type of token
+        claims.put("typ","access_token");
+        // add role inside token
+        claims.put("role", role.name());
+        return createToken(claims, userDetails.getUsername());
+    }
+
+    // generated Refresh token
+    public String generatedRefreshToken(UserDetails userDetails, Role role) {
+        Map<String, Object> claims = new HashMap<>();
+
+        //added what type of token
+        claims.put("typ","refresh_token");
         // add role inside token
         claims.put("role", role.name());
         return createToken(claims, userDetails.getUsername());

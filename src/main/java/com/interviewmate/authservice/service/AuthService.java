@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface AuthService {
-    UserDTO registerAdmin(UserDTO userDTO);
+    UserDTO registerUser(UserDTO userDTO);
 
-    ApiResponse<RefreshTokenResponse> loginAdmin(LoginRequest loginRequest);
+    ApiResponse<RefreshTokenResponse> loginUser(LoginRequest loginRequest);
 
     ApiResponse<RefreshTokenResponse> refreshToken(RefreshTokenRequest body, HttpServletRequest request, HttpServletResponse response);
 

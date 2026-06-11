@@ -26,13 +26,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> registerAdmin(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.registerAdmin(userDTO));
+    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.registerUser(userDTO));
     }
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<RefreshTokenResponse>> loginAdmin(@RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(authService.loginAdmin(loginRequest));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(authService.loginUser(loginRequest));
     }
 
     @PostMapping("/refresh")

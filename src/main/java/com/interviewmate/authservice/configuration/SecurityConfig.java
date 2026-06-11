@@ -1,6 +1,6 @@
 package com.interviewmate.authservice.configuration;
 
-import com.interviewmate.authservice.constance.AppConstants;
+import com.interviewmate.authservice.constants.AppConstants;
 import com.interviewmate.authservice.filter.JwtFilter;
 import com.interviewmate.authservice.security.OAuth2SuccessHandler;
 import com.interviewmate.authservice.security.Oauth2FailureHandler;
@@ -42,8 +42,7 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequest ->
-                        authorizeHttpRequest.requestMatchers(AppConstants.AUTH_PUBLIC_URL.toArray(new String[0])).permitAll()
-                                .anyRequest().authenticated()
+                        authorizeHttpRequest.requestMatchers(AppConstants.AUTH_PUBLIC_URL.toArray(new String[0])).permitAll().anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedEntryPoint()))
 
@@ -88,12 +87,11 @@ public class SecurityConfig {
             response.setContentType("application/json");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             PrintWriter writer = response.getWriter();
-
             String json = """
                     {
                       "error: "UNAUTHORIZED",
                       "message":%s
-                     }
+                    }
                     """.formatted(authException.getMessage());
 
             writer.write(json);

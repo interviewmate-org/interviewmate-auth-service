@@ -28,12 +28,12 @@ public class AuthServiceImpl implements AuthService {
     private final OtpService otpService;
 
     @Override
-    public UserDTO registerAdmin(UserDTO userDTO) {
+    public UserDTO registerUser(UserDTO userDTO) {
         return null;
     }
 
     @Override
-    public ApiResponse<RefreshTokenResponse> loginAdmin(LoginRequest loginRequest) {
+    public ApiResponse<RefreshTokenResponse> loginUser(LoginRequest loginRequest) {
         return null;
     }
 

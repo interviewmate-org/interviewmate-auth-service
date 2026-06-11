@@ -88,7 +88,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 });
 
         Map<String, Object> enrichedAttributes = new HashMap<>(oAuth2User.getAttributes());
-        enrichedAttributes.put("email", user.getEmail()); // normalise: always present
+        enrichedAttributes.put("email", user.getEmail()); // normalize: always present
 
         return new DefaultOAuth2User(List.of(new SimpleGrantedAuthority(user.getRole().name())), enrichedAttributes, userNameAttributeName);
     }
@@ -102,6 +102,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .name(userInfo.getName())
                 .image(userInfo.getImageUrl())
                 .provider(provider)
+                .providerId(userInfo.getId())
                 .role(Role.ROLE_USER) // default role for OAuth2 registrations
                 .build();
 

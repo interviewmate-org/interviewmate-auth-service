@@ -22,7 +22,8 @@ public class Oauth2FailureHandler extends SimpleUrlAuthenticationFailureHandler 
     private String frontendUri;
 
     @Override
-    public void onAuthenticationFailure(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+    public void onAuthenticationFailure(@NonNull HttpServletRequest request,
+                                        @NonNull HttpServletResponse response,
                                         @NonNull AuthenticationException exception) throws IOException {
 
 
